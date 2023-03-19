@@ -41,7 +41,6 @@ public class TestOne1 {
 		while (it.hasNext()) {
 			driver.switchTo().window(it.next());
 			System.out.println(driver.getTitle());
-			//added comments
 		}
 
 	}
