@@ -27,5 +27,6 @@ public class SortStream {
 		List<String> OrignalList = grid.stream().map(s -> s.getText()).collect(Collectors.toList());
 		List<String> sortedList = OrignalList.stream().sorted().collect(Collectors.toList());
 		Assert.assertTrue(OrignalList.equals(sortedList));
+		//Added comment
 	}
 }
