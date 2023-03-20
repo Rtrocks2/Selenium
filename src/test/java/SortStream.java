@@ -27,6 +27,23 @@ public class SortStream {
 		List<String> OrignalList = grid.stream().map(s -> s.getText()).collect(Collectors.toList());
 		List<String> sortedList = OrignalList.stream().sorted().collect(Collectors.toList());
 		Assert.assertTrue(OrignalList.equals(sortedList));
-		//Added comment
+		// Added comment
+
+		List<String> price;
+		do {
+
+			List<WebElement> row = driver.findElements(By.xpath("//tbody/tr/td[1]"));
+			price = row.stream().filter(s -> s.getText().contains("Rice")).map(s -> getVeggiePrice(s))
+					.collect(Collectors.toList());
+			price.forEach(a -> System.out.println(a));
+			if (price.size() < 1) {
+				driver.findElement(By.xpath("//*[@id=\"root\"]/div/div/div/div/div/div/div/div[2]/ul/li[7]/a")).click();
+			}
+		} while (price.size() < 1);
+	}
+
+	private String getVeggiePrice(WebElement s) {
+		String priceValue = s.findElement(By.xpath("following-sibling::td[1]")).getText();
+		return priceValue;
 	}
 }
